@@ -1,0 +1,135 @@
+/* ----------------------------
+   To do with a post list page.
+   ------------------------- */
+
+.article-area .posts-first-summary {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+.article-area .posts-subsequent-summary {
+    margin: 0;
+    border: 0;
+    border-top: 1px solid rgb(200, 200, 200);
+    padding: 0;
+}
+
+/* ----------------------------------------------*/
+
+.article-area .posts-summary-photo {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.article-area .posts-summary-photo .image {
+    flex: 100% 0 0;
+    margin: 0;
+    border: 0;
+    padding: 0.5em 0 0 0;
+}
+
+.article-area .posts-summary-photo .image img{
+    width: 100%;
+}
+
+.article-area .posts-summary-photo .text {
+    flex: 100% 0 0;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+@media (min-width: 500px) {
+
+    .article-area .posts-summary-photo {
+        align-items: center;
+    }
+    .article-area .posts-summary-photo > .image {
+        flex: 35% 0 0;
+        margin: 0;
+        border: 0;
+        padding: 1em 1em 0 0;
+    }
+    .article-area .posts-summary-photo > .text {
+        flex: 65% 0 0;
+        margin: 0;
+        border: 1em 1em 0 1em;
+        padding: 0;
+    }
+} 
+
+/* ----------------------------------------------*/
+
+.article-area .posts-summary-basic {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.article-area .posts-summary-basic p {
+    margin: 0;
+    border: 0;
+    padding: 0.2em 0 0 0;
+    line-height: 1.3;
+}
+
+@media (min-width: 500px) {
+    .article-area .posts-summary-basic p {
+        padding: 0.2em 0 0 0;
+        line-height: 1.3;
+    }
+}
+
+/* ----------------------------------------------*/
+
+.article-area .posts-summary-bottom {
+    margin: 0;
+    border: 0; 
+    padding: 0.2em 0 0 0;
+}
+
+.article-area .posts-summary-bottom p {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-size: 1.0rem;
+}
+
+@media (min-width: 500px) {
+    .article-area .posts-summary-bottom {
+        padding: 0.3em 0 0 0;
+    }
+    .article-area .posts-summary-bottom p {
+        font-size: 1.1rem;
+    }
+}
+
+.article-area .posts-pages-nav {
+    display: flex;
+    flex: row;
+    justify-content: center;
+    margin: 1.3em 0 0 0;
+    border: 0;
+    padding: 0;
+}
+
+.article-area .posts-pages-nav > p > .posts-pages-nav-item {
+    line-height: 1;
+    margin: 0;
+    border: 0;
+    padding: 0 .2em 0 .2em;
+}
+
+.article-area .posts-pages-nav > p >  .posts-pages-nav-item-cur {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+@media screen and (min-width: 500px) {
+    .article-area .posts-pages-nav > p > .posts-pages-nav-item {
+        padding: 0 .2em 0 .2em;
+    }
+}

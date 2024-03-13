@@ -1,0 +1,73 @@
+.post-centre {
+    flex: 0 0 auto;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.post-centre h1 {
+    text-align: center;
+}
+.post-centre h2 {
+    text-align: center;
+}
+.post-centre h3 {
+    text-align: center;
+}
+.post-centre h4 {
+    text-align: center;
+}
+.post-centre h5 {
+    text-align: center;
+}
+.post-centre h6 {
+    text-align: center;
+}
+.post-centre p {
+    text-align: center;
+}
+
+.post-centre p .img-landscape {
+    text-align: center;
+    max-width: 60%;
+    height: auto;
+    margin: 0.3em 0 0.3em 0;
+    border: 1px solid black;
+}
+
+.post-centre p .img-portrait {
+    text-align: center;
+    max-width: 30%;
+    height: auto;
+    margin: 0.3em 0 0.3em 0;
+    border: 1px solid black;
+}
+.post-centre .whoandwhen {
+    font-style: italic;
+}
+
+/* ---------------------------------------------------------------------- */
+
+.post-bottom {
+    flex: 0 0 auto;
+    margin: 0;
+    border: 0;
+    padding: 2.0em 0 0 0;
+    width: 100%;
+}
+
+.post-bottom { 
+    margin: 0 0 0 0;
+}
+.post-bottom > p {    
+    margin: 0.4em 0 0 0;
+    line-height: 1.3;
+    font-size: 0.9rem;
+}
+
+@media (min-width: 500px) {
+    .post-bottom > p {   
+        margin: 0.3em 0 0 0; 
+        font-size: 1.0rem;
+    }
+}

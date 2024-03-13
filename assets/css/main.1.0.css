@@ -1,0 +1,226 @@
+
+/* ------------------------------------------------------------------ */
+
+
+.container > .main-area-article {
+    flex: 1 0 auto;
+    margin: 0;
+    border: 0;
+    padding: 1.0em 0 0.75em 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container .main-area-post-bottom {
+    flex: 0 0 auto;
+    margin: 0;
+    border: 0;
+    padding: 2.0em 0 0 0;
+    width: 100%;
+}
+
+@media screen and (min-width: 500px) {
+    .container {
+        margin: 0.5em 0.5em 0.5em 0.5em;
+    }
+}
+/* ------------------------------------------------------------------ */
+
+
+/* ------------------------------------------------------------------ */
+
+.main-area-article .float-image-left {
+    float: left;
+    margin: 1.5em 1em 0 0;
+    border: 0;
+    padding: 0;
+}
+.main-area-article .float-image-left img {
+    max-width: 100%;
+    margin: 0;
+    border: 0;
+    border: 1px solid black;
+    padding: 0;
+}
+.main-area-article .fil-about {
+    max-width: 40%;
+}
+.main-area-article .fil-desphoto {
+    max-width: 60%;
+}
+
+.main-area-article .float-image-right {
+    float: right;
+    margin: 1.5em 0 0 1em;
+    border: 0;
+    padding: 0;
+}
+.main-area-article .float-image-right img {
+    max-width: 100%;
+    margin: 0;
+    border: 0;
+    border: 1px solid black;
+    padding: 0;
+}
+.main-area-article .fir-about {
+    max-width: 40%;
+}
+.main-area-article .fir-desphoto {
+    max-width: 60%;
+}
+
+.main-area-article .float-image-centre {
+    margin: 1.5em auto 0 auto;
+    border: 0;
+    padding: 0;
+}
+.main-area-article .float-image-centre img {
+    max-width: 100%;
+    margin: 0;
+    border: 0;
+    border: 1px solid black;
+    padding: 0;
+}
+.main-area-article .fic-desphoto {
+    max-width: 60%;
+}
+
+@media (min-width: 500px) {
+    .main-area-article .fil-about {
+        max-width: 25%;
+    }    
+    .main-area-article .fil-desphoto {
+        max-width: 40%;
+    }
+    .main-area-article .fir-about {
+        max-width: 25%;
+    }
+    .main-area-article .fir-desphoto {
+        max-width: 40%;
+    }
+    .main-area-article .fic-desphoto {
+        max-width: 30%;
+    }
+}
+
+.main-area-article ul {
+    padding-left: 1.5em;
+}
+
+.main-area-article ol {
+    list-style: decimal; 
+    margin: .5em 0 0 0;
+    padding: 0 0 0 0.25em;
+    line-height: 1.4;
+}
+
+.main-area-article li {
+    list-style: disc; 
+    margin: .5em 0 0 0;
+    padding: 0 0 0 0.25em;
+    line-height: 1.4;
+}
+
+@media (min-width: 500px) {
+    .main-area-article ol {
+        padding: 0 0 0 0.5em;
+    }
+    
+    .main-area-article li {
+        padding: 0 0 0 0.5em;
+    }
+}
+
+.main-area-post-bottom { 
+    margin: 0 0 0 0;
+}
+.main-area-post-bottom > p {    
+    margin: 0.4em 0 0 0;
+    line-height: 1.3;
+    font-size: 0.9rem;
+}
+
+@media (min-width: 500px) {
+    .main-area-post-bottom > p {   
+        margin: 0.3em 0 0 0; 
+        font-size: 1.0rem;
+    }
+}
+
+/* ------------------------------------------------------------------ */
+
+.main-area-article .map-ww1 {
+    margin: 0;
+    border: 0;
+    border: 1px solid red;
+    padding: 0;
+    height: 400px;
+}
+
+/* ------------------------------------------------------------------ */
+
+.fallen-info {
+    margin: 0 0 1em 0;
+    border: 0;
+    border-bottom: 1px solid #29704a;
+    padding: 0 0 2em 0;
+}
+
+/* ------------------------------------------------------------------ */
+
+.roll-of-honour {
+    display: flex;
+    flex-wrap: wrap;
+}
+.roll-of-honour .roll-of-honour-individual {
+    flex-basis: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin: 0;
+    border: 0;
+    padding: 0 1em 0 0;
+}
+
+@media screen and (min-width: 250px) {
+    .roll-of-honour .roll-of-honour-individual {  
+        flex-basis: 50%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        border: 0;
+        padding: 0 1em 0 0;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .roll-of-honour .roll-of-honour-individual {  
+        flex-basis: 33%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        border: 0;
+        padding: 0 1em 0 0;
+    }
+}
+
+@media screen and (min-width: 750px) {
+    .roll-of-honour .roll-of-honour-individual {  
+        flex-basis: 25%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        border: 0;
+        padding: 0 1em 0 0;
+    }
+}
+
+
+
+/* ---------------------------------------------------------------------------
+   Specific to posts
+   --------------------------------------------------------------------------- */
+
+.simple-image-left-landscape {max-width: 95%; border: 1px solid black;}
+.simple-image-right-portrait {max-width: 70%; margin: 0 12.5% 0 12.5%; border: 1px solid black;}
+@media screen and (min-width: 500px) {
+    .simple-image-left-landscape {max-width: 40%; border: 1px solid black;}
+    .simple-image-right-portrait {max-width: 25%; margin: 0 7.5% 0 7.5%; border: 1px solid black;}
+}

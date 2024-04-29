@@ -1,0 +1,68 @@
+/* ----------------------------------------------------------------------------
+   The css in this file is for the 'l-standard' layout. 
+   IT MUST BE USED IN OTHER LAYOUTS, EVEN IF THIS MEANS THAT CSS IS DUPLICATED.
+   ---------------------------------------------------------------------------- */
+
+.l-standard {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.l-standard .float-image-left {
+    float: left;
+    margin: 0.3em 1em 0.25em 0;
+    border: 1px solid black;
+    padding: 0;
+    max-width: 40%;
+}
+.l-standard .float-image-right {
+    float: right;
+    margin: 0.3em 0 0.25em 1em;
+    border: 1px solid black;
+    padding: 0;
+    max-width: 40%;
+}
+
+@media (min-width: 500px) {
+    .l-standard .float-image-left {
+        max-width: 35%;
+    }
+    .l-standard .float-image-right {
+        max-width: 35%;
+    }
+}
+
+.l-standard .image-center {
+    clear: both;
+    display: block;
+    text-align: center;
+    margin: 0.3em auto 0.25em auto;
+    border: 1px solid black;
+    padding: 0;
+    line-height: 1.5;
+}
+
+.l-standard ol {
+    list-style: decimal; 
+    margin: .5em 0 0 0;
+    padding: 0 0 0 0.25em;
+    line-height: 1.4;
+}
+
+.l-standard li {
+    list-style: decimal; 
+    margin: .5em 0 0 0;
+    padding: 0 0 0 0.25em;
+    line-height: 1.4;
+}
+
+@media (min-width: 500px) {
+    .l-standard ol {
+        padding: 0 0 0 0.5em;
+    }
+    
+    .l-standard li {
+        padding: 0 0 0 0.5em;
+    }
+}

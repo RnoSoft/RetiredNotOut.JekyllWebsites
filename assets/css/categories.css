@@ -1,0 +1,58 @@
+/* ----------------------------------------------------------------------------
+   The css in this file is for the 'categories' layout. 
+   IT MUST BE USED IN OTHER LAYOUTS, EVEN IF THIS MEANS THAT CSS IS DUPLICATED.
+   ---------------------------------------------------------------------------- */
+
+.categories {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.categories .float-image-left {
+    float: left;
+    margin: 0.3em 1em 0.25em 0;
+    border: 1px solid black;
+    padding: 0;
+    max-width: 40%;
+}
+.categories .float-image-right {
+    float: right;
+    margin: 0.3em 0 0.25em 1em;
+    border: 1px solid black;
+    padding: 0;
+    max-width: 40%;
+}
+
+@media (min-width: 500px) {
+    .categories .float-image-left {
+        max-width: 35%;
+    }
+    .categories .float-image-right {
+        max-width: 35%;
+    }
+}
+
+.categories ol {
+    list-style: decimal; 
+    margin: .5em 0 0 0;
+    padding: 0 0 0 0.25em;
+    line-height: 1.4;
+}
+
+.categories li {
+    list-style: decimal; 
+    margin: .5em 0 0 0;
+    padding: 0 0 0 0.25em;
+    line-height: 1.4;
+}
+
+@media (min-width: 500px) {
+    .categories ol {
+        padding: 0 0 0 0.5em;
+    }
+    
+    .categories li {
+        padding: 0 0 0 0.5em;
+    }
+}

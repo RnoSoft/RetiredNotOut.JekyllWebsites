@@ -133,7 +133,11 @@
     position: absolute;
     bottom: 12px;
     left: 50%;
+    width: 98%;
     transform: translate(-50%, 0%);
+    margin: 0;
+    border: 0;
+    padding: 0;
 }
 
 .header-image p {

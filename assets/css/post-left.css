@@ -1,0 +1,110 @@
+
+.post-left {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.post-left .float-image-left {
+    float: left;
+    margin: 0.3em 1em 0.25em 0;
+    border: 1px solid black;
+    padding: 0;
+    min-width: 35%;
+    max-width: 35%;
+}
+.post-left .float-image-right {
+    float: right;
+    margin: 0.3em 0 0.25em 1em;
+    border: 1px solid black;
+    padding: 0;
+    min-width: 35%;
+    max-width: 35%;
+}
+
+.post-left .image-center {
+    clear: both;
+    display: block;
+    text-align: center;
+    margin: 0.3em auto 0.25em auto;
+    border: 1px solid black;
+    padding: 0;
+    min-width: 35%;
+    max-width: 35%;
+}
+
+@media screen and (min-width: 576px) {
+    .post-left .float-image-left {
+        min-width: 35%;
+        max-width: 35%;
+    }
+    .post-left .float-image-right {
+        min-width: 35%;
+        max-width: 35%;
+    }
+    .post-left .image-center {
+        min-width: 30%;
+        max-width: 30%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .post-left .float-image-left {
+        min-width: 35%;
+        max-width: 35%;;
+    }
+    .post-left .float-image-right {
+        min-width: 35%;
+        max-width: 35%;
+    }
+    .post-left .image-center {
+        min-width: 30%;
+        max-width: 30%;
+    }
+}
+
+.post-left .image-center {
+    clear: both;
+    display: block;
+    text-align: center;
+    margin: 0.3em auto 0.25em auto;
+    border: 1px solid black;
+    padding: 0;
+    line-height: 1.5;
+}
+
+.post-left .whoandwhen {
+    font-style: italic;
+}
+/* ---------------------------------------------------------------------- */
+
+.post-left .post-bottom {
+    margin: 0.4em 0 0 0;
+    padding: 0;
+    width: 100%;
+}
+
+.post-left .post-bottom > p {    
+    margin: 0.2em 0 0 0;
+    line-height: 1.0;
+}
+
+@media screen and (min-width: 576px) {
+    .post-left .post-bottom {
+        margin: 0.7em 0 0 0;
+    }    
+    .post-left .post-bottom > p {   
+        margin: 0.3em 0 0 0; 
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .post-left .post-bottom {
+        margin: 1em 0 0 0;
+    }    
+    .post-left .post-bottom > p {   
+        margin: 0.4em 0 0 0; 
+    }
+}
+
+

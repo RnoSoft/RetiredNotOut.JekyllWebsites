@@ -1,0 +1,48 @@
+/* ----------------------------------------------------------------------------
+   The css in this file is for the 'standard-centre' layout. 
+   IT MUST BE USED IN OTHER LAYOUTS, EVEN IF THIS MEANS THAT CSS IS DUPLICATED.
+   ---------------------------------------------------------------------------- */
+
+.standard-centre {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.standard-centre h1 {
+    text-align: center;
+}
+.standard-centre h2 {
+    text-align: center;
+}
+.standard-centre h3 {
+    text-align: center;
+}
+.standard-centre h4 {
+    text-align: center;
+}
+.standard-centre h5 {
+    text-align: center;
+}
+.standard-centre h6 {
+    text-align: center;
+}
+.standard-centre p {
+    text-align: center;
+}
+
+.standard-centre p .img-landscape {
+    text-align: center;
+    max-width: 60%;
+    height: auto;
+    margin: 0.3em 0 0.3em 0;
+    border: 1px solid black;
+}
+
+.standard-centre p .img-portrait {
+    text-align: center;
+    max-width: 30%;
+    height: auto;
+    margin: 0.3em 0 0.3em 0;
+    border: 1px solid black;
+}

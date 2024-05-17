@@ -72,10 +72,10 @@
     display: flex;
     flex-direction: column;
     min-height: 98vh;
-    margin: 0.25em 0.25em 0.25em 0.25em;
+    margin: 0.2em;
 }
 
-.container > .header-area {
+.container .header-area {
     flex: 0 0 auto;
     margin: 0;
     border: 0;
@@ -83,39 +83,52 @@
     width: 100%;
 }
 
-.container > .article-area {
+.container .article-area {
     flex: 1 0 auto;
     margin: 0;
     border: 0;
-    padding: 1.0em 0 0.5em 0;
+    padding: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.container > .footer-area {
+.container .footer-area {
     flex: 0 0 auto;
     margin: 1.0em 0 0 0;
-    border: 0;
     padding: 0;
     width: 100%;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 576px) {
     .container {
-        margin: 0.5em 0.5em 0.5em 0.5em;
+        margin: 0.3em;
     }
-    .container > .article-area {
-        padding: 1.0em 0 1.0em 0;
+    .container .article-area {
+        margin: 0.25em 0 0 0;
+        border: 0;
+        padding: 0;
     }
 }
 
-/* ------------------------------------------------------------------
-   To do with headers - only used in the 'header-body' include file. 
-   Keep this so
-   ------------------------------------------------------------------ */
+@media screen and (min-width: 768px) {
+    .container {
+        margin: 0.4em;
+    }
+    .container .article-area {
+        margin: 0.5em 0 0 0;
+        border: 0;
+        padding: 0;
+    }
+}
 
-.header-image {
+/* -------------------------------------------------------------------------
+   To do with type 01 headers - only used in the 'header-body' include file. 
+   Keep this so. The number will increase as other types of header are 
+   developed.
+   ------------------------------------------------------------------------- */
+
+.header01-image {
     position: relative;
     text-align: center;
     color: white;
@@ -124,82 +137,107 @@
     padding: 0;
 }
 
-.header-image img {
+.header01-image img {
     width:100%;
     border: 1px solid black;
 }
 
-.header-image .header-image-bc {
+.header01-image .header01-image-bc {
     position: absolute;
     bottom: 12px;
     left: 50%;
-    width: 98%;
     transform: translate(-50%, 0%);
-    margin: 0;
-    border: 0;
-    padding: 0;
 }
 
-.header-image p {
-    font-size: 1.4rem;
+.header01-image p {
+    font-size: 1.6rem;
     font-weight: bold;
     line-height: 1;
 }
-.header-image p a:link {
+.header01-image p a:link {
     color: white;
     text-decoration: none;
 }
-.header-image p a:visited {
+.header01-image p a:visited {
     color: white;
     text-decoration: none;
 }
-.header-image p a:hover {
+.header01-image p a:hover {
     color: white;
     text-decoration: underline;
 }
-.header-image p :active {
+.header01-image p :active {
     color: white;
     text-decoration: none;
 } 
 
-@media screen and (min-width: 500px) {
-    .header-image .header-image-bc {
-        bottom: 20px;
-        left: 50%;
-        transform: translate(-50%, 0%); 
+@media screen and (min-width: 576px) {
+    .header01-image .header01-image-bc {
+        bottom: 16px;
     }
-    .header-image p {
-        font-size: 1.9rem;
+    .header01-image p {
+        font-size: 1.8rem;
     }
 }
 
-.header-nav {
+@media screen and (min-width: 768px) {
+    .header01-image .header01-image-bc {
+        bottom: 20px;
+    }
+    .header01-image p {
+        font-size: 2.0rem;
+    }
+}
+
+
+.header01-nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 0 0.5em 0 0.5em;
+    margin: 0.0em 0.5em 0 0.5em;
     border: 0;
+    /* border: 1px solid red; */
     padding: 0;
 }
 
-.header-nav .header-nav-item {
+.header01-nav .header01-nav-item {
     flex: 0 0 auto;
-    margin: 0;
+    margin: 0.6em 0 0 0;
     border: 0;
     padding: 0 0.2em 0 0.2em;
-    line-height: 1.6;
-    font-size: 1.1rem;
+    line-height: 1;
+    font-size: 1.2rem;
 }
 
-.header-nav  .header-nav-cur {
+.header01-nav  .header01-nav-cur {
     font-weight: bold;
 }
 
-@media screen and (min-width: 500px) {
-    .header-nav .header-nav-item{
-        padding: 0 0.25em 0 0.25em;
-        line-height: 1.25;
+@media screen and (min-width: 576px) {
+    .header01-nav {
+        margin: 0.5em 0.5em 0 0.5em;
+        /* border: 1px solid green; */
+    }
+    .header01-nav .header01-nav-item{
+        margin: 0.5em 0 0 0;
+        border: 0;
+        padding: 0 0.2em 0 0.2em;
+        line-height: 1;
         font-size: 1.3rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .header01-nav {
+        margin: 0.0em 0.5em 0 0.5em;
+        /* border: 1px solid blue; */
+    }
+    .header01-nav .header01-nav-item{
+        margin: 0.4em 0 0 0;
+        border: 0;
+        padding: 0 0.3em 0 0.3em;
+        line-height: 1;
+        font-size: 1.5rem;
     }
 }
 
@@ -217,20 +255,42 @@
 }
 
 .foot-text > p {
-    margin: 0;
-    padding: 0.25em 0.75em;
+    margin: 0.5em 0 0.5em 0;
+    border: 10;
+    padding: 0;
+    font-size: 0.9rem;
 }
 
 .foot-text > .foot-text-left {
     float: none;
     text-align: center;
+    line-height: 1;
 }
 .foot-text > .foot-text-right {
     float: none;
     text-align: center;
+    line-height: 1;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 576px) {
+    .foot-text > p {
+        font-size: 1.1rem;
+    }    
+    /* This is not required - left/right text still on separate lines
+    .foot-text > .foot-text-left {
+        float: left;
+        text-align: left;
+        }
+    .foot-text > .foot-text-right{
+        float: right;
+        text-align: right;
+    } */
+} 
+
+@media screen and (min-width: 768px) {
+    .foot-text > p {
+        font-size: 1.15rem;
+    }    
     .foot-text > .foot-text-left {
         float: left;
         text-align: left;
@@ -246,22 +306,21 @@
     flex-wrap: wrap;
     justify-content: center;
     clear: both;
-    margin: 0.25em 0 0.5em 0;
+    margin: 0.25em 0 1em 0;
 }
 
 .foot-nav .foot-nav-item {
     flex: 0 0 auto; 
     margin: 0;
-    border: 0;
     padding: 0 0.35em 0 0.35em;
-    line-height: 1.6;
+    line-height: 1.4;
 }
 
 .foot-nav .foot-nav-cur {
     font-weight: bold;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 576px) {
     .foot-nav {
         margin-top: 0em;
         margin-bottom: 0.25em;
@@ -269,6 +328,18 @@
 
     .foot-nav .foot-nav-item {
         padding: 0 0.25em 0 0.25em;
-        line-height: 1.25;
+        line-height: 1.4;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .foot-nav {
+        margin-top: 0em;
+        margin-bottom: 0.25em;
+    }
+
+    .foot-nav .foot-nav-item {
+        padding: 0 0.25em 0 0.25em;
+        line-height: 1.6;
     }
 }

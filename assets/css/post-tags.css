@@ -1,0 +1,72 @@
+/* -------------------------
+   To do with the tags page.
+   ---------------------- */
+
+.post-tags {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+.post-tags h1 {
+    text-align: center;
+}
+.post-tags h2 {
+    text-align: center;
+}
+.post-tags h3 {
+    text-align: center;
+}
+.post-tags h4 {
+    text-align: center;
+}
+.post-tags h5 {
+    text-align: center;
+}
+.post-tags h6 {
+    text-align: center;
+}
+.post-tags p {
+    text-align: center;
+}
+
+.post-tags .post-tags-nav {
+    display: flex;
+    flex: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: .75em 0 0 0;
+    border: 0;
+    padding: 0;
+}
+
+.post-tags .post-tags-nav a { 
+    display: block;  
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.post-tags .post-tags-nav a p { 
+    /* display: block;   */
+    flex: 0 0 auto; 
+    line-height: 1;
+    margin: 0.3em 0.3em;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: .20em .6em;
+    background-color: rgba(128, 128, 128, 0.24);
+}
+
+@media screen and (min-width: 576px) {
+    .post-tags .post-tags-nav a p {
+        margin: 0.3em 0.3em;
+        padding: .25em .75em;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .post-tags .post-tags-nav a p {
+        margin: 0.3em 0.3em;
+        padding: .25em .75em;
+    }
+}

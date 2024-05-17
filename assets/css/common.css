@@ -2,11 +2,6 @@
     font-size: 0.8rem;
     box-sizing: border-box;
 }
-@media screen and (min-width: 500px) {
-    :root {
-        font-size: 0.9rem;
-    }
-}
 
 *, ::before, ::after {
     box-sizing: inherit;
@@ -33,10 +28,10 @@ body * + * {
 }
 
 h1 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
 }
 h2 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 h3 {
     font-size: 1.0rem;
@@ -51,9 +46,9 @@ li {
     font-size: 1.0rem;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 576px) {
     body {
-        line-height: 1.5;
+        line-height: 1.4;
     }
 
     body * + * {
@@ -67,16 +62,45 @@ li {
         font-size: 1.4rem;
     }
     h3 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
     h4 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
     p {
         font-size: 1.2rem;
     }
     li {
         font-size: 1.2rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        line-height: 1.5;
+    }
+
+    body * + * {
+        margin-top: 1.0em;
+    } 
+
+    h1 {
+        font-size: 1.7rem;
+    }
+    h2 {
+        font-size: 1.6rem;
+    }
+    h3 {
+        font-size: 1.3rem;
+    }
+    h4 {
+        font-size: 1.3rem;
+    }
+    p {
+        font-size: 1.3rem;
+    }
+    li {
+        font-size: 1.3rem;
     }
 }
 
@@ -106,22 +130,36 @@ li {
     padding: 0 0 0 0.15em;
 }
 
-@media (min-width: 500px) {    
+@media screen and (min-width: 576px) {    
     ul {
-        padding-left: 1.25em;
+        padding-left: 1.2em;
     }
     li {
         padding: 0 0 0 0.15em;
     }
 }
 
+@media screen and (min-width: 768px) {    
+    ul {
+        padding-left: 1.4em;
+    }
+    li {
+        padding: 0 0 0 0.15em;
+    }
+}
+
+
 .provisional {
     color: red;
     font-size: 1.2rem;
 }
-
-@media (min-width: 500px) {      
+@media screen and (min-width: 576px) {      
+    .provisional {
+        font-size: 1.3rem;
+    }
+}
+@media screen and (min-width: 768px) {      
     .provisional {
         font-size: 1.4rem;
-}
+    }
 }

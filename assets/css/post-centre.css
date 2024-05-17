@@ -1,0 +1,112 @@
+.post-centre {
+    flex: 0 0 auto;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.post-centre h1 {
+    text-align: center;
+}
+.post-centre h2 {
+    text-align: center;
+}
+.post-centre h3 {
+    text-align: center;
+}
+.post-centre h4 {
+    text-align: center;
+}
+.post-centre h5 {
+    text-align: center;
+}
+.post-centre h6 {
+    text-align: center;
+}
+.post-centre p {
+    text-align: center;
+}
+
+.post-centre .whoandwhen {
+    font-style: italic;
+}
+
+/* ----------------------------------------------------------------------------*/
+
+.post-centre .post-centre-standard {
+    text-align: center;
+    max-width: 100%;
+    margin: 0 auto 0 auto;
+}
+
+.post-centre .post-centre-standard p .img-landscape {
+    text-align: center;
+    max-width: 95%;
+    height: auto;
+    margin: 0.3em 0 0.3em 0;
+    border: 1px solid black;
+}
+
+.post-centre .post-centre-standard p .img-portrait {
+    text-align: center;
+    max-width: 47.5%;
+    height: auto;
+    margin: 0.3em 0 0.3em 0;
+    border: 1px solid black;
+}
+
+@media screen and (min-width: 576px) {
+    .post-centre .post-centre-standard {
+        max-width: 90%;
+    }
+    .post-centre .post-centre-standard p .img-landscape {
+        max-width: 95%;
+    }
+    .post-centre .post-centre-standard p .img-portrait {
+        max-width: 47.5%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .post-centre .post-centre-standard {
+        max-width: 80%;
+    }
+    .post-centre .post-centre-standard p .img-landscape {
+        max-width: 90%;
+    }
+    .post-centre .post-centre-standard p .img-portrait {
+        max-width: 45%;
+    }
+}
+
+/* ---------------------------------------------------------------------- */
+
+.post-centre-bottom {
+    margin: 1.5em 0 0 0;
+    padding: 0;
+    width: 100%;
+}
+
+.post-centre-bottom > p {    
+    margin: 0.2em 0 0 0;
+    line-height: 1.0;
+}
+
+@media screen and (min-width: 576px) {
+    .post-centre-bottom {
+        margin: 1.5em 0 0 0;
+    }    
+    .post-centre-bottom > p {   
+        margin: 0.3em 0 0 0; 
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .post-centre-bottom {
+        margin: 1.5em 0 0 0;
+    }    
+    .post-centre-bottom > p {   
+        margin: 0.4em 0 0 0; 
+    }
+}
+

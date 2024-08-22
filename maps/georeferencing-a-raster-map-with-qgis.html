@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="/assets/css/common.css">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="icon" href="/assets/favicon.ico">
+<meta name="robots" content="noindex">
+<title>Georeferencing a Map with QGIS</title>
+
+<link rel="stylesheet" href="/assets/css/standard-left.css">
+
+</head>
+<body>
+<div class="container">      
+<header class="header-area">
+    
+    
+    <p class="provisional-header">This Website is Under Development</p>
+    <div class="header01-image">
+        <img src="/content/headers/header.jpg" alt="Header photo for retired not out"/> 
+        <p class="header01-image-bc"><a href="/">Retired Not Out - Jekyll Websites</a></p>
+    </div>
+
+    
+
+    <nav class="header01-nav">
+        
+            <p class="header01-nav-item"><a href="/index">About</a></p>
+        
+            <p class="header01-nav-item"><a href="/web-sites/developing-the-retired-not-out-website">Retired-Not-Out</a></p>
+        
+            <p class="header01-nav-item"><a href="/web-sites/developing-the-ulverston-fallen-website">Ulverston-Fallen</a></p>
+        
+            <p class="header01-nav-item"><a href="/categories/">Categories</a></p>
+        
+            <p class="header01-nav-item"><a href="/articles/">Articles</a></p>
+        
+    </nav>  
+</header>  
+<div class="clear-both"></div>
+   
+
+<article class="article-area">
+<div class="standard-left">
+<main>
+    <h1 id="georeferencing-a-map-with-qgis">Georeferencing a Map with QGIS</h1>
+
+<p><span class="provisional"><strong>This web page is provisional.</strong></span></p>
+
+<p><em>Paul Chappell, July 2024.</em></p>
+
+<p>This page is part of the article <a href="/maps/using-raster-maps-on-a-webpage" target="_blank" rel="noopener noreferrer">Using Raster Maps on a Web Page</a>.</p>
+
+<p>It describes how to align a raster map with the Earth’s surface, setting up latitude and longitude locations for each map pixel. It describes how to do this with <a href="https://www.qgis.org/en/site/" target="_blank" rel="noopener noreferrer">QGIS</a>, a free (though donations are welcomed) and open-source geographic information system. This article is based on release 3.34, the most stable (Long Term Support) release at the time of writing.</p>
+
+<p>In order to georeference the map, you need to determine the latitude and longitude of at least six control points on it. Once these have been determined, QGIS will georeference the map. In order to do this, we need a referenced map, a map where latitudes and longitudes are known. Then we pick points on the raster map, say the corner of an old building. We find the location of the building on the referenced map, which gives us that latitude and longitude of the control point. This process is very easy with QGIS’s georeferencer. How this is done is explained in detail below.</p>
+
+<p>There are several possible referenced maps:</p>
+
+<ul>
+  <li>
+    <p><em>Open Street Map</em>: this is easy to zoom in, to show individual buildings. This comes preloaded into QGIS and is the reference map I use.</p>
+  </li>
+  <li>
+    <p><em>Google Satellite</em>.</p>
+  </li>
+  <li>
+    <p><em>Google maps</em>.</p>
+  </li>
+  <li>
+    <p><em>Bing Maps</em>.</p>
+  </li>
+</ul>
+
+<h2 id="enable-qgis-processing">Enable QGIS Processing</h2>
+
+<p>The first thing to do is make sure processing is enabled. If not, there may be problems locating and executing some of the commands mentioned below. It can be enabled by clicking <em>Plugins</em> on the menu and then selecting <em>Manage and Install Plugins</em>. The following form is displayed:</p>
+
+<p><img class="image-center width-l" src="/content/cat/maps/using-maps-on-a-webpage/enable-qgis-processing.png" alt="Image of form to enable QGIS processing" /></p>
+
+<p>Click <em>installed</em> on the left panel and make sure <em>processing</em> is enabled.</p>
+
+<h2 id="add-the-referenced-map">Add the Referenced Map</h2>
+
+<p>Make sure the <em>browser</em> panel is visible (usually on the left). If not click <em>View</em> on the menu, then <em>Panels</em>, then make sure the <em>browser</em> panel is enabled. An example of the browser panel:</p>
+
+<p><img class="image-center width-p" src="/content/cat/maps/using-maps-on-a-webpage/adding-google-satellite.png" alt="QGIS browser panel" /></p>
+
+<p>The referenced map might need to be added to the <em>XYZ Tiles</em> list. If you are using <em>open street map</em> it will appear, as it is pre-loaded.</p>
+
+<p>If you are using another georeferenced map, such as <em>Google Satellite</em> it might need to be added to the list. This is done by right clicking <em>XYZ Tiles</em> and selecting the <em>New Connection</em> option, the following form is displayed:</p>
+
+<p><img class="image-center width-l" src="/content/cat/maps/using-maps-on-a-webpage/adding-google-satellite-form.png" alt="QGIS adding google satellite" /></p>
+
+<p>The forms fields need to be initialised as follows:</p>
+
+<ul>
+  <li>
+    <p>For Google Satellite: the name should be <em>Google Satellite</em>; the URL is <em>https://www.google.cn/maps/vt?lyrs=s@189&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={z}</em>; authentication is not required; the zoom levels are 0 to 18; and the three fields at the bottom of the form should be left unchanged.</p>
+  </li>
+  <li>
+    <p>For Google Maps: the name should be <em>Google Maps</em>; the URL is: https://mt1.google.com/vt/lyrs=r&amp;x={x}&amp;y={y}&amp;z={z}; authentication is not required; the zoom levels are 0 to 18; and the three fields at the bottom of the form should be left unchanged.</p>
+  </li>
+  <li>
+    <p>For Bing Maps: the name should be <em>Bing Maps</em>; the URL is: http://ecn.t3.tiles.virtualearth.net/tiles/a{q}.jpeg?g=1; authentication is not required; the zoom levels are 0 to 18; and the three fields at the bottom of the form should be left unchanged.</p>
+  </li>
+</ul>
+
+<p>Once OK is clicked, the referenced map will appear under <em>XYZ Tiles</em>. The map only needs to be added once, every time QGIS is reloaded it will reappear (until deleted).</p>
+
+<h2 id="georeferencing-the-map">Georeferencing the Map</h2>
+
+<p>Create a directory to contain the files needed for georeferencing. The directory is known as the project directory. It’s very important to back-up this directory every time its contents change. If you use <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a> for source control, the files will be backed up every time you push a new version of the website to the GitHub cloud. The map needs to be copied to this directory.</p>
+
+<p>Under <em>XYZ Tiles</em> in the <em>browser</em> panel, double click the referenced map you want to use. This will create a window containing the map, you will need to zoom it in to the area covered by the map being georeferenced.</p>
+
+<p>I started off using Open Street Map as the georeferenced map, but quickly ran into problems. My first control point was a corner of the Ulverston station building, which seemed to be the same shape on both maps, so I assumed it was accurate enough. But as I started looking for other control points, I began noticing that old buildings where missing or had a different shape. I quickly changed to using Google Satellite.</p>
+
+<p>At this point it is a good idea to create and save a new project for the map. It is created by clicking <em>new</em> on the <em>project</em> menu. And saved by clicking <em>save as</em> on the <em>project</em> menu. The name of the project file can be anything, I used <em>project</em>. The project can be saved at any point with <em>save</em> on the <em>project</em> menu. A project can be reloaded  with <em>open</em> on the <em>project</em> menu. If QGIS is not running, double clicking the project file will load QGIS and open the project.</p>
+
+<p>Click <em>Layer</em> on the menu then select the <em>Georeferencer</em> option to display the georeferencer form. Click the <em>File</em> menu item on it and then <em>Open Raster</em> to load the raster map. The georeferencer window should then look something like:</p>
+
+<p><img class="image-center width-l" src="/content/cat/maps/using-maps-on-a-webpage/georefencer-form.jpg" alt="QGIS georeferencer form" /></p>
+
+<p>There is a big issue with saving projects when you are using the georeferencer form. You would expect the georeferencer form to be saved, and then redisplayed when you return to the project. This is not the case, when the project is reloaded, the georeferencer form will not be present, and all data entered on the form might be lost. This is covered in more detail in the <em>Saving the Georeferencer Data</em> section below.</p>
+
+<p>Several of the buttons (icons) at the top of the form are important:</p>
+
+<p><img class="clear-both float-image-left width-32" src="/content/cat/maps/using-maps-on-a-webpage/geo-open-map.png" alt="Georeferencer Open Raster Map" /></p>
+
+<p><em>Open Raster</em>: when clicked the open raster form is displayed, this is an alternate way of loading a raster map. When a map is opened for the first time a new file will appear in the mapping directory, its name is the map file name with ‘<em>.aux.xml</em>’ appended. This file should never be deleted, just ignore it.</p>
+
+<p><img class="clear-both float-image-left width-32" src="/content/cat/maps/using-maps-on-a-webpage/geo-r-hand.png" alt="Georeferencer Hand Icon" /></p>
+
+<p><em>Pan</em>: when clicked the mouse icon changes to a hand, so that the map can be moved around. Unfortunately, it is not the default mouse icon, the default is <em>add point</em>. It is a good idea to click this button immediately after the form is loaded, as the map will almost certainly need to be moved and zoomed to locate the first control point. The map is moved by left clicking the mouse and then dragging it to its new location. It can be zoomed in and out with the mouse wheel.</p>
+
+<p><img class="clear-both float-image-left width-32" src="/content/cat/maps/using-maps-on-a-webpage/geo-add-point.png" alt="Georeferencer Add Point" /></p>
+
+<p><em>Add Point</em>: when clicked the mouse icon changes to a cross hair, so that a control point can be selected and marked. Once the cross hair is on a control point left click the mouse to mark it. This is explained in the section <em>Adding a Control Point</em> immediately below.</p>
+
+<p><img class="clear-both float-image-left width-32" src="/content/cat/maps/using-maps-on-a-webpage/geo-del-point.png" alt="Georeferencer Delete Point" /></p>
+
+<p><em>Delete point</em>: when clicked the mouse icon changes to a cross hair, so that a control point can be selected and deleted. Once the cross hair is on a control point (a red dot) left click the mouse to delete it. This is explained in the section <em>Adding a Control Points</em> immediately below.</p>
+
+<p><img class="clear-both float-image-left width-32" src="/content/cat/maps/using-maps-on-a-webpage/geo-save-gcp-points.png" alt="Georeferencer Save GCP Points" /></p>
+
+<p><em>Save GCP Points</em>: as control points are added to the raster map, they can be saved by clicking this button. This should be done before the map is georeferenced, it can also be done after each control point has been added. Saving the control points allows you to return to georeferencing later.</p>
+
+<p><img class="clear-both float-image-left width-32" src="/content/cat/maps/using-maps-on-a-webpage/geo-load-gcp-points.png" alt="Georeferencer Load GCP Points" /></p>
+
+<p><em>Load GCP Points</em>: a previous set of control points can be loaded by clicking this button. This button allows you to return to a previous set of control points to continue georeferencing.</p>
+
+<p><img class="clear-both float-image-left width-32" src="/content/cat/maps/using-maps-on-a-webpage/geo-transformation-settings.png" alt="Georeferencer Transformation Settings" /></p>
+
+<p><em>Transformation Settings</em>: when clicked the transformation settings form is displayed. It is used to specify how the georeferencing is done. For more information see the section <em>Georeferencing the Map</em>, below.</p>
+
+<p><img class="clear-both float-image-left width-32" src="/content/cat/maps/using-maps-on-a-webpage/geo-start-georeferencing.png" alt="Georeferencer Start Georeferencing" /></p>
+
+<p><em>Start Georeferencing</em>: once the control points have been added and the transformation settings specified, this button is used to start the georeferencing process. For more information see the section <em>Georeferencing the Map</em>, below.</p>
+
+<h3 id="adding-a-control-point">Adding a Control Point</h3>
+
+<p>The first thing to do is to locate a suitable control point that appears on the raster map and the map being georeferenced. A good choice is an old building, such as Ulverston Station. Once selected pan and zoom the georeferenced map so the control point is visible:</p>
+
+<p><img class="image-center width-l" src="/content/cat/maps/using-maps-on-a-webpage/georefencer-google-satellite.jpg" alt="QGIS georeferencer google satellite" /></p>
+
+<p>Click the <em>pan</em> button on the georeferencer form and pan and zoom the map so that the station area is visible. <em>Add Point</em> is then clicked to change the mouse to a cross hair. Position the cross hair on a corner of the main station building and left click the mouse. A green dot will then appear, as in the image below. The green dot is to the left of the benchmark <em>B.M.100.0</em>, you need to look closely, it’s very small.</p>
+
+<p><img class="image-center width-l" src="/content/cat/maps/using-maps-on-a-webpage/georefencer-form-marked.jpg" alt="QGIS georeferencer form marked" /></p>
+
+<p>The following form will appear when the mouse is clicked:</p>
+
+<p><img class="image-center width-l" src="/content/cat/maps/using-maps-on-a-webpage/georefencer-enter-map-coordinates.jpg" alt="QGIS georeferencer enter map coordinates" /></p>
+
+<p>It is used to specify the coordinates of the control point. You need to make sure that <em>automatically hide the georeferencer window</em> is checked. Then click <em>from map canvas</em>. The google satellite window will appear with a set of cross hairs. Position the cross hairs on the control point and left click the mouse.</p>
+
+<p>The <em>enter map coordinates</em> form will now have the x and y coordinates filled in, something like:</p>
+
+<p><img class="image-center width-l" src="/content/cat/maps/using-maps-on-a-webpage/georefencer-enter-map-coordinates-filled-in.jpg" alt="QGIS georeferencer enter map coordinates filled in" /></p>
+
+<p>Below the x and y coordinates there is a list box, which is used to set the coordinate reference system (or CRS). There are many, many coordinate reference systems, the following are the most relevant to programmers:</p>
+
+<ul>
+  <li>
+    <p><em>World Geodetic System 1984 (WGS84)</em>: uses a 3-D ellipsoidal model of the Earth, where coordinates are specified as latitude and longitude. It is a geographical CRS. It is used as the default for GPS, and is widly used for mapping, GIS applications and the military.</p>
+  </li>
+  <li>
+    <p><em>Web Mercator projection (EPSG:3857)</em>: is based on WGS84, but uses the Mercator projection to map the Earth’s spherical surface onto a flat, two-dimensional plane. It shows the world as a square, making it useful for small scale mapping on the internet. It is used by most mapping applications (such as Google maps and Bing maps). This CRS is good when working with maps that cover a small area, such as the map of Ulverston.</p>
+  </li>
+  <li>
+    <p><em>EPSG:4326</em>: is also known as the WGS84 projection.</p>
+  </li>
+</ul>
+
+<p>This <a href="/maps/mapping-coordinate-reference-systems" target="_blank" rel="noopener noreferrer">article</a> explores coordinate reference systems in more detail.</p>
+
+<p>Leave or set the list box value below the x and y coordinates to <em>EPSG:3857 - WGS 84 / Pseudo-Mercator</em>. This is the CRS or coordinate reference system, to be used. A description of this and the various types of CRS is way, way beyond this article (you need to be a geographer). Throughout this article a CRS of EPSG:3857 has always been used, it works! Unless you know what you’re doing, don’t change it.</p>
+
+<p>Then click <em>OK</em> to mark the control point. The green dot will change to a red dot, and a control point entry will be added to the GCP table below the map. Something like:</p>
+
+<p><img class="image-center width-l" src="/content/cat/maps/using-maps-on-a-webpage/georefencer-form-cp-added.jpg" alt="QGIS georeferencer form cp added" /></p>
+
+<p>Once you have created the control point it is a good idea to save the current set of control points with <em>save GCP points</em>.</p>
+
+<p>The above needs to be performed for more control points, at least six, spread about the map, not close together. As each control point is added an entry appears in the GCP table. If you want to remove a control point, click the <em>delete point</em> icon, move the cross hairs to the point to be deleted (a red dot) and left click the mouse.</p>
+
+<h3 id="saving-the-georeferencer-data">Saving the Georeferencer Data</h3>
+
+<p>The <em>save GCP points</em> button can be used to save a set of control points. This should be done after each control point is added, to allow you to return to georeferencing the map later. The control points file name is the original map file name with ‘<em>.points</em>’ appended.</p>
+
+<p>The <em>load GCP points</em> button can be used to load a set of saved control points.</p>
+
+<p>Saving the project <strong>will not</strong> save the georeferencing form, you need to use the <em>save GCP points</em> on the georeferencing form. A word of warning, if you save the project without saving the control points, and then terminate QGIS, you will lose your control points. QGIS does not even warn you, which is not good.</p>
+
+<p>To return to georeferencing later, use the <em>open</em> or <em>open recent</em> option, on the <em>project</em> menu. If you are still adding control points you will need to re-load the georeferencer form and then open the raster map (the original file). If a set of control points have been saved, they will also be loaded.</p>
+
+<h3 id="georeferencing-the-map-1">Georeferencing the Map</h3>
+
+<p>Before the actual georeferencing can be done, the transformation settings must be set. When the <em>transformation</em> button is clicked, the following form is displayed:</p>
+
+<p><img class="image-center width-p" src="/content/cat/maps/using-maps-on-a-webpage/geo-transformation-settings-form.png" alt="Georeferencer Transformation Settings Form" /></p>
+
+<p>Leave all the fields as they are unless you know what you are doing. The default settings work, changing them is beyond the scope of this article.</p>
+
+<p>Once the transformation settings have been set, the map is georeferenced by clicking the <em>Start Georeferencing</em> button. The process might take a few minutes, it depends on how powerful your computer is. Once complete you can close the georeferencer form, it is no longer needed.</p>
+
+<p>You will now see the georeferenced map as a layer of the project. If you right click the mouse on the map, you can copy the latitude and longitude coordinates of the point clicked.</p>
+
+<p>You should save the project so that you can return to the map later.</p>
+
+<p><a href="/maps/using-raster-maps-on-a-webpage">Return to main article page</a>.</p>
+
+<p><em>Paul Chappell, July 2024.</em></p>
+
+<style>
+  .standard-left .width-l {
+      width: 95%;
+      max-width: 700px;
+      border: 1px solid black
+  }
+  .standard-left .width-p {
+      width: 95%;
+      max-width: 400px;
+      border: 1px solid black
+  }
+  .standard-left .width-32 {
+      max-width: 32px;
+      border: 1px solid black
+  }
+</style>
+
+<p>https://desktop.google.co.uk/permissions/geoguidelines/</p>
+
+</main>
+</div>
+</article>
+
+<div class="clear-both"></div>
+<footer class="footer-area">
+    <div class="foot-text">
+        <p class="foot-text-left">Copyright © 2024 Paul Chappell. All Rights Reserved</p>
+        <p class="foot-text-right">Built With <a href="https://jekyllrb.com/">Jekyll</a>; Hosted By <a href="https://pages.github.com/">GitHub Pages</a></p>
+    </div>
+    <nav class="foot-nav">
+        
+            <p class="foot-nav-item"><a href="/index">About</a></p>
+        
+            <p class="foot-nav-item"><a href="/web-sites/developing-the-retired-not-out-website">Retired-Not-Out</a></p>
+        
+            <p class="foot-nav-item"><a href="/web-sites/developing-the-ulverston-fallen-website">Ulverston-Fallen</a></p>
+        
+            <p class="foot-nav-item"><a href="/categories/">Categories</a></p>
+        
+            <p class="foot-nav-item"><a href="/articles/">Articles</a></p>
+        
+            <p class="foot-nav-item"><a href="/contact">Contact</a></p>
+        
+            <p class="foot-nav-item"><a href="/copyright">Copyright</a></p>
+        
+            <p class="foot-nav-item"><a href="/info">Info</a></p>
+        
+    </nav>  
+</footer>
+            
+</div>
+</body>
+</html>

@@ -100,18 +100,7 @@
     width: 100%;
 }
 
-@media screen and (min-width: 576px) {
-    .container {
-        margin: 0.3em;
-    }
-    .container .article-area {
-        margin: 0.25em 0 0 0;
-        border: 0;
-        padding: 0;
-    }
-}
-
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 550px) {
     .container {
         margin: 0.4em;
     }
@@ -144,13 +133,13 @@
 
 .header01-image .header01-image-bc {
     position: absolute;
-    bottom: 12px;
+    bottom: 4px;
     left: 50%;
     transform: translate(-50%, 0%);
 }
 
 .header01-image p {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: bold;
     line-height: 1;
 }
@@ -171,22 +160,24 @@
     text-decoration: none;
 } 
 
-@media screen and (min-width: 576px) {
+@media screen and (min-width: 550px) {
     .header01-image .header01-image-bc {
-        bottom: 16px;
-    }
-    .header01-image p {
-        font-size: 1.8rem;
-    }
-}
-
-@media screen and (min-width: 768px) {
-    .header01-image .header01-image-bc {
-        bottom: 20px;
+        bottom: 8px;
     }
     .header01-image p {
         font-size: 2.0rem;
     }
+    .header01-image img {
+        width:100%;
+        border: 1px solid black;
+    }
+}
+
+.header01-image-by {
+    text-align: right;
+    margin: 0;
+    border: 0;
+    padding: 0;
 }
 
 
@@ -196,7 +187,6 @@
     justify-content: center;
     margin: 0.0em 0.5em 0 0.5em;
     border: 0;
-    /* border: 1px solid red; */
     padding: 0;
 }
 
@@ -213,24 +203,9 @@
     font-weight: bold;
 }
 
-@media screen and (min-width: 576px) {
-    .header01-nav {
-        margin: 0.5em 0.5em 0 0.5em;
-        /* border: 1px solid green; */
-    }
-    .header01-nav .header01-nav-item{
-        margin: 0.5em 0 0 0;
-        border: 0;
-        padding: 0 0.2em 0 0.2em;
-        line-height: 1;
-        font-size: 1.3rem;
-    }
-}
-
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 550px) {
     .header01-nav {
         margin: 0.0em 0.5em 0 0.5em;
-        /* border: 1px solid blue; */
     }
     .header01-nav .header01-nav-item{
         margin: 0.4em 0 0 0;
@@ -272,22 +247,7 @@
     line-height: 1;
 }
 
-@media screen and (min-width: 576px) {
-    .foot-text > p {
-        font-size: 1.1rem;
-    }    
-    /* This is not required - left/right text still on separate lines
-    .foot-text > .foot-text-left {
-        float: left;
-        text-align: left;
-        }
-    .foot-text > .foot-text-right{
-        float: right;
-        text-align: right;
-    } */
-} 
-
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 550px) {
     .foot-text > p {
         font-size: 1.15rem;
     }    
@@ -320,19 +280,7 @@
     font-weight: bold;
 }
 
-@media screen and (min-width: 576px) {
-    .foot-nav {
-        margin-top: 0em;
-        margin-bottom: 0.25em;
-    }
-
-    .foot-nav .foot-nav-item {
-        padding: 0 0.25em 0 0.25em;
-        line-height: 1.4;
-    }
-}
-
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 550px) {
     .foot-nav {
         margin-top: 0em;
         margin-bottom: 0.25em;

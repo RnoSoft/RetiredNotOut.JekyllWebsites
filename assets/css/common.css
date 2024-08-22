@@ -46,36 +46,7 @@ li {
     font-size: 1.0rem;
 }
 
-@media screen and (min-width: 576px) {
-    body {
-        line-height: 1.4;
-    }
-
-    body * + * {
-        margin-top: 0.9em;
-    } 
-
-    h1 {
-        font-size: 1.5rem;
-    }
-    h2 {
-        font-size: 1.4rem;
-    }
-    h3 {
-        font-size: 1.2rem;
-    }
-    h4 {
-        font-size: 1.2rem;
-    }
-    p {
-        font-size: 1.2rem;
-    }
-    li {
-        font-size: 1.2rem;
-    }
-}
-
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 550px) {
     body {
         line-height: 1.5;
     }
@@ -130,16 +101,7 @@ li {
     padding: 0 0 0 0.15em;
 }
 
-@media screen and (min-width: 576px) {    
-    ul {
-        padding-left: 1.2em;
-    }
-    li {
-        padding: 0 0 0 0.15em;
-    }
-}
-
-@media screen and (min-width: 768px) {    
+@media screen and (min-width: 550px) {    
     ul {
         padding-left: 1.4em;
     }
@@ -149,17 +111,12 @@ li {
 }
 
 
+.provisional-header {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+}
 .provisional {
     color: red;
-    font-size: 1.2rem;
-}
-@media screen and (min-width: 576px) {      
-    .provisional {
-        font-size: 1.3rem;
-    }
-}
-@media screen and (min-width: 768px) {      
-    .provisional {
-        font-size: 1.4rem;
-    }
+    font-weight: bold;
 }

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="/assets/css/common.css">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="icon" href="/assets/favicon.ico">
+<meta name="robots" content="noindex">
+<title>Using Raster Maps on a Web Page</title>
+<meta name="description" content="Describes how to use a raster map on a web page; how to georeference it; how to create mapping tiles; and how to use it with leaflet."/>
+<link rel="stylesheet" href="/assets/css/standard-left.css">
+
+</head>
+<body>
+<div class="container">      
+<header class="header-area">
+    
+    
+    <p class="provisional-header">This Website is Under Development</p>
+    <div class="header01-image">
+        <img src="/content/headers/header.jpg" alt="Header photo for retired not out"/> 
+        <p class="header01-image-bc"><a href="/">Retired Not Out - Jekyll Websites</a></p>
+    </div>
+
+    
+
+    <nav class="header01-nav">
+        
+            <p class="header01-nav-item"><a href="/index">About</a></p>
+        
+            <p class="header01-nav-item"><a href="/web-sites/developing-the-retired-not-out-website">Retired-Not-Out</a></p>
+        
+            <p class="header01-nav-item"><a href="/web-sites/developing-the-ulverston-fallen-website">Ulverston-Fallen</a></p>
+        
+            <p class="header01-nav-item"><a href="/categories/">Categories</a></p>
+        
+            <p class="header01-nav-item"><a href="/articles/">Articles</a></p>
+        
+    </nav>  
+</header>  
+<div class="clear-both"></div>
+   
+
+<article class="article-area">
+<div class="standard-left">
+<main>
+    <h1 id="using-a-raster-map-on-a-web-page">Using a Raster Map on a Web Page</h1>
+
+<p><span class="provisional"><strong>This article is provisional.</strong></span></p>
+
+<p><em>Paul Chappell, July 2024.</em></p>
+
+<p>When the Ulverston Fallen website was designed, we thought it would be a good idea to have a map showing where the World War One fallen lived, the resulting map is <a href="https://www.ulverstonfallen.uk/world-war-one/map-of-fallen" target="_blank" rel="noopener noreferrer">here</a>. It can be zoomed in and out, in a similar way to Google or Bing maps. Each poppy on the map shows where one of the fallen lived. Clicking a poppy displays the name of the person living at that location. Clicking the name displays information about the person.</p>
+
+<p>This article describes how to place such a map on a web page.</p>
+
+<p>You need to obtain a high-definition version of the map you want to use. The <a href="https://maps.nls.uk/index.html" target="_blank" rel="noopener noreferrer">National Library of Scotland</a> is a very good source of maps, especially historical maps. They supplied the 1913 map for the Ulverston Fallen website, it cost around £20.</p>
+
+<p><em>Before you use a map on a website you need to make sure you have permission to use it.</em> This can get complicated; the National Library of Scotland explains map copyright <a href="https://maps.nls.uk/copyright.html" target="_blank" rel="noopener noreferrer">here</a>. Just because a map appears on the internet, it does not mean you have permission to use it on your website.</p>
+
+<p>The 1913 Ulverston map came as a single ‘tif’ file, with a size of around 560MB, and dimensions of 16800 by 11656 pixels. Because of its size, it shows detail down to individual houses on a street. It is known as a raster map, which is an electronic image made up of a fixed number of pixels, just like a digital photo.</p>
+
+<p>There are several issues with using such a map on a web page:</p>
+
+<ul>
+  <li>It is far, far too big, it would take too long to download.</li>
+  <li>It would use too much memory in the browser.</li>
+  <li>It would be impossible to zoom in and out.</li>
+  <li>It has no coordinate reference system, making it impossible to put objects (such as poppies) on it.</li>
+</ul>
+
+<p>The last issue can be solved by <a href="/maps/using-raster-maps-on-a-webpage#georeferencing">georeferencing the map</a>, which involves assigning a latitude and longitude to each map pixel. Once georeferenced, the latitude and longitude of any point on the map can be found easily.</p>
+
+<p>The first three issues can be solved by converting the map to a <a href="/maps/using-raster-maps-on-a-webpage#tiled-maps">tiled map</a>. Tiling splits the map up into a set of 256 by 256-pixel tiles, that the browser seamlessly joins together. The browser only needs to download the required tiles for the part of the map being viewed. They also allow the map to be zoomed in and out.</p>
+
+<p>Georeferencing and creating the map tiles can be done with <a href="https://www.qgis.org/en/site/" target="_blank" rel="noopener noreferrer">QGIS</a>, a free (though donations are welcomed) and open-source geographical information system. The map needs to be georeferenced before the map tiles are created. Once georeferenced, QGIS can be used to find the latitude and longitude of any point on the map.</p>
+
+<h2 id="georeferencing">Georeferencing</h2>
+
+<p>Georeferencing is the process of assigning real world coordinates to each pixel of a raster map; aligning it to the Earth’s surface by specifying a latitude and longitude for each map pixel.</p>
+
+<p>This is achieved by taking several recognised features on the map, such as buildings, road intersections and landmarks, and determining the latitude and longitude  of each one. These features are called control points. Once the location of several have been determined, QGIS can be used to georeference the map. How this is done is way beyond the scope of this article (I’m a programmer, not a geographer, though my A-Level in geography proved useful).</p>
+
+<p>When the latitude and longitude of a control point is determined, it needs to be as <em>accurate</em> as possible. The quality of the georeferencing depends on this accuracy. The control points also need to be spread over the map, and not close together. Several control points are used to try and reduce errors.</p>
+
+<p>The latitude and longitude of a control point can be determined from a map that has already been georeferenced. One such map is <a href="https://www.openstreetmap.org/#map=6/54.910/-3.432" target="_blank" rel="noopener noreferrer">Open Street Map</a>. Right clicking a point on the map and selecting the <em>show address</em> option gives the latitude and longitude of the location, which in turn gives the latitude and longitude of the control point. Open street map is free open-source software. Other georeferenced maps include Google Earth, Google Maps and Bing Maps (though you may need permission to use these).</p>
+
+<p>QGIS makes this easy. The raster map is loaded into one window and the georeferenced map into another. On the raster map, the mouse can be changed to a set of cross hairs, that can be used to mark a control point. The same is true on the georeferenced map. Once the control point is located on the georeferenced map, the mouse is clicked, and the location is transferred to the raster map.</p>
+
+<p>Control point accuracy depends on several things:</p>
+
+<ul>
+  <li><em>The accuracy of the raster map.</em> This depends on a lot of things. If someone has hand drawn it, it’s probably useless. The 1913 Ulverston map was produced by Ordnance Survey, so is should be fairly accurate. If the raster map is not very accurate, georeferencing can never improve the accuracy.</li>
+  <li><em>The accuracy of the georeferenced map.</em> Open street map is created by volunteers but seems to be fairly accurate for Ulverston. Google and Bing maps are created by large organisation so they should be fairly accurate.</li>
+  <li><em>Finding suitable control points.</em> The older the map the harder this is. For the Ulverston Fallen map, it was easy enough to find a suitable number of control points, though there where non in the bottom right part of the map.</li>
+  <li><em>The accuracy of the control points.</em> This depends on the above issues, and on the person doing the georeferencing.</li>
+</ul>
+
+<p>Using <a href="https://www.qgis.org/en/site/" target="_blank" rel="noopener noreferrer">QGIS</a> to georeference a map is covered in more detail <a href="/maps/georeferencing-a-raster-map-with-qgis" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+<h2 id="tiled-maps">Tiled Maps</h2>
+
+<p>In order to use the map on a website, it needs to be converted into what is called a tiled (or slippy) map. A tiled map consists of a set of individual tiles, each having a fixed size of 256 by 256 pixels, which are seamlessly joined together by the browser. The browser only needs to download the tiles for the part of the map currently displayed in the map’s window, it does not need to download the entire map.</p>
+
+<p>A tiled map has several zoom levels, starting at zero. Each level has a set of individual tiles. As the level increases, the number of tiles increases and therefore the amount of detail. At zoom level zero there is just one tile. As the level increases, each individual tile is replaced by 4. At zoom level one, there are 4 tiles; at zoom level two, there are 16; at zoom level three, there are 64; and so on. The number of zoom levels required depends on the size of the map. The Ulverston Fallen map only needs to go down four levels; it only covers a small area. Google maps is also a tiled map, but it goes down twenty-two levels; it covers the entire earth.</p>
+
+<p>When the <a href="https://www.ulverstonfallen.uk/world-war-one/map-of-fallen" target="_blank" rel="noopener noreferrer">Ulverston Fallen</a> map is first displayed, it is displayed at zoom level zero. The browser only needs to get the single tile at zoom level zero from the web server and display it. Because the tile has a small size, this happens quickly. The amount of detail is minimal, but you do get a rough idea of the layout of Ulverston back in 1913.</p>
+
+<p>If the map is quickly zoomed in to its maximum zoom level, it will redisplay showing detail down to street level for the selected area. The browser only needs to get the few tiles from the maximum zoom level, needed to redisplay the map. It does not need to get all of them. As you move the map around in its window, the browser only needs to get the missing tiles.</p>
+
+<p>If the map is zoomed out a little (but not all the way), the browser no longer uses the tiles from the maximum level, it needs to get the relevant tiles from the nearest intermediary level. When the new map is displayed, there will be less detail, because the tiles used contain less detail.</p>
+
+<p>Using <a href="https://www.qgis.org/en/site/" target="_blank" rel="noopener noreferrer">QGIS</a> to create the mapping tiles is covered in more detail <a href="/maps/creating-mapping-tiles-with-qgis" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+<h2 id="using-the-map-tiles">Using the Map Tiles</h2>
+
+<p>The browser does not have the ability to display mapping tiles. To do this a Java Script code library is required. There are many of these, but <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer">Leaflet</a> (which is also open source software) is the most commonly used. It’s the one we used for Ulverston Fallen.</p>
+
+<p>In order to use the mapping tiles, a Java Script code library such as <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer">Leaflet</a> is required, along with the ability to develop a web page using HTML and Java Script. Leaflet will display the map using the map tiles created by QGIS. The leaflet code is responsible for zooming the map in and out, moving the map around and displaying items such as poppies on it.</p>
+
+<p>The technicalities of using leaflet to process the map on a web page, are covered <a href="/maps/using-leaflet-to-display-a-map" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+<p>Once the map has been georeferenced, the latitude and longitude location of any point on the map can found easily. This includes:</p>
+
+<ul>
+  <li>
+    <p>The centre location of the map.</p>
+  </li>
+  <li>
+    <p>The boundaries of the map. Leaflet displays the map in a window of the web page. it needs to be told the location of the north-east and south-west corners of the map. The reader is able to move the map around in the window, but if they move it ouside of the boundaries, the map will automatically snap back.</p>
+  </li>
+  <li>
+    <p>The location of items (such as poppies) that are displayed on the map.</p>
+  </li>
+</ul>
+
+<p><br />
+Paul Chappell, July 2024.</p>
+
+
+</main>
+</div>
+</article>
+
+<div class="clear-both"></div>
+<footer class="footer-area">
+    <div class="foot-text">
+        <p class="foot-text-left">Copyright © 2024 Paul Chappell. All Rights Reserved</p>
+        <p class="foot-text-right">Built With <a href="https://jekyllrb.com/">Jekyll</a>; Hosted By <a href="https://pages.github.com/">GitHub Pages</a></p>
+    </div>
+    <nav class="foot-nav">
+        
+            <p class="foot-nav-item"><a href="/index">About</a></p>
+        
+            <p class="foot-nav-item"><a href="/web-sites/developing-the-retired-not-out-website">Retired-Not-Out</a></p>
+        
+            <p class="foot-nav-item"><a href="/web-sites/developing-the-ulverston-fallen-website">Ulverston-Fallen</a></p>
+        
+            <p class="foot-nav-item"><a href="/categories/">Categories</a></p>
+        
+            <p class="foot-nav-item"><a href="/articles/">Articles</a></p>
+        
+            <p class="foot-nav-item"><a href="/contact">Contact</a></p>
+        
+            <p class="foot-nav-item"><a href="/copyright">Copyright</a></p>
+        
+            <p class="foot-nav-item"><a href="/info">Info</a></p>
+        
+    </nav>  
+</footer>
+            
+</div>
+</body>
+</html>

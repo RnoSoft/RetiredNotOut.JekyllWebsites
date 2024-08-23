@@ -128,15 +128,37 @@
 
 .header01-image img {
     width:100%;
+    height: auto;
+    margin: 0;
     border: 1px solid black;
+    padding: 0;
+    display: block;
 }
 
 .header01-image .header01-image-bc {
     position: absolute;
-    bottom: 4px;
+    bottom: 6px;
     left: 50%;
     transform: translate(-50%, 0%);
     width: 100%;
+    font-size: 14px;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+@media screen and (min-width: 500px) {
+    .header01-image .header01-image-bc {
+        bottom: 8px;
+        font-size: 20px;
+    }
+}
+@media screen and (min-width: 700px) {
+    .header01-image .header01-image-bc {
+        bottom: 10px;
+        font-size: 25px;
+    }
 }
 
 .header01-image p {
@@ -162,9 +184,6 @@
 } 
 
 @media screen and (min-width: 550px) {
-    .header01-image .header01-image-bc {
-        bottom: 8px;
-    }
     .header01-image p {
         font-size: 2.0rem;
     }
@@ -186,17 +205,17 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 0.0em 0.5em 0 0.5em;
-    border: 0;
+    margin: 0.4em 0 0 0;
+    border: 0px solid red;
     padding: 0;
 }
 
 .header01-nav .header01-nav-item {
     flex: 0 0 auto;
-    margin: 0.6em 0 0 0;
-    border: 0;
-    padding: 0 0.2em 0 0.2em;
-    line-height: 1;
+    margin: 0 0.15em 0 0.15em;
+    border: 0px solid black;
+    padding: 0;
+    line-height: 1.2;
     font-size: 1.2rem;
 }
 
@@ -206,14 +225,31 @@
 
 @media screen and (min-width: 550px) {
     .header01-nav {
-        margin: 0.0em 0.5em 0 0.5em;
+        margin: 0.4em 0 0 0;
+        border: 0px solid blue;
+        padding: 0;
     }
     .header01-nav .header01-nav-item{
+        margin: 0 0.25em 0 0.25em;
+        border: 0px solid black;
+        padding: 0;
+        line-height: 1.0;
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (min-width: 625px) {
+    .header01-nav {
         margin: 0.4em 0 0 0;
-        border: 0;
-        padding: 0 0.3em 0 0.3em;
+        border: 0px solid orange;
+        padding: 0;
+    }
+    .header01-nav .header01-nav-item{
+        margin: 0 0.25em 0 0.25em;
+        border: 0px solid black;
+        padding: 0;
         line-height: 1;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 }
 
